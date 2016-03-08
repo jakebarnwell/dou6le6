@@ -10,8 +10,8 @@ def extract_game(game_data):
         'name'                : game_data[0],
         'is_private'          : game_data[1],
         'has_started'         : game_data[2],
-        'pin'                 : game_data[3],
-        'players_info'        : game_data[4],
+        'players_list'        : game_data[3]
+        'players_dominoes'    : game_data[4],
         'current_player'      : game_data[5],
         'last_move_timestamp' : game_data[6],
         'is_over'             : game_data[7],
@@ -26,8 +26,8 @@ def encode_game(game_dict):
     game_data = [game_dict['name'],
                  game_dict['is_private'],
                  game_dict['has_started'],
-                 game_dict['pin'],
-                 game_dict['players_info'],
+                 game_dict['players_list'],
+                 game_dict['players_dominoes'],
                  game_dict['current_player'],
                  game_dict['last_move_timestamp'],
                  game_dict['is_over'],
@@ -62,5 +62,4 @@ def initialize_game(game_dict):
     players_hands = []
     for i in range(4):
         player_hands.append(rand_dominoes[7*i:7*i+7])
-    ## Initialize Game
     return game_dict
