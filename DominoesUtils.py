@@ -103,3 +103,8 @@ def play_domino(game, user_id, direction, domino):
     game[“current_player”] = (game[“current_player”] + 1) % 4 +1
 
     return game
+
+def is_game_over(game):
+    if sum(game[“num_of_each_domino”]) == 49:
+        game[“is_over”] = True
+    
