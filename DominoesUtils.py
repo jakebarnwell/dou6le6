@@ -59,7 +59,7 @@ def randomize_dominoes():
 
 def initialize_game(game_dict):
     rand_dominoes = randomize_dominoes()
-    players_hands = 
+    players_hands = []
     for i in range(4):
         player_hands.append(rand_dominoes[7*i:7*i+7])
     ## Initialize Game
