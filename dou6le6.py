@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    return "Potato potato"
+    return "Potato potatos"
 
 @app.route('/game/join/<int:game_id>/<int:user_id>')
 def join(game_id, user_id):

@@ -15,3 +15,7 @@ For example, try out:
 http://localhost:5000/game/1056787448
 
 (Assuming your webserver is running on port 5000)
+
+USEFUL!
+====
+http://www.datasciencebytes.com/bytes/2015/02/24/running-a-flask-app-on-aws-ec2/
