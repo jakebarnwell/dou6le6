@@ -65,5 +65,18 @@ def play_domino(game_id, user_id, direction, domino):
     fb_post_response = fb.write_data(fb_game_key, fb_post_game)
     return fb_post_response
 
+@app.route(‘/game/isGameOver/<game_id>/‘)
+def is_game_over(game_id):
+    fb_game_key = 'game_' + str(game_id)
+    fb_get_response = fb.get_data(fb_game_key)
+    python_game = Utils.extract_game(fb_get_response)
+
+    game = Utils.is_game_over(game)
+
+    fb_post_game = Utils.encode_game(game)
+    fb_post_response = fb.write_data(fb_game_key, fb_post_game)
+    return fb_post_response
+
+
 if __name__ == '__main__':
     app.run()

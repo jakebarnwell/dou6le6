@@ -103,4 +103,3 @@ def play_domino(game, user_id, direction, domino):
     game["current_player"] = (game["current_player"] + 1) % 4 +1
 
     return game
-            
