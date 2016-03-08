@@ -1,3 +1,10 @@
+import random
+
+dominoes = []
+for i in range(7):
+        for j in range(i+1):
+            dominoes.append([j, i])
+
 def extract_game(game_data):
     game_dict = {
         'name'                : game_data[0],
@@ -30,6 +37,24 @@ def encode_game(game_dict):
                  game_dict['num_of_each_domino']
                 ]
     return game_data
+
+def not_passable(rand_dominoes):
+    if rand_dominoes == dominoes:
+        return False
+    
+    for i in range(4):
+        player = rand_dominoes[7*i:7*(i+1)]
+        count_doubles = 0
+        for double in player:
+            
+    
+    
+
+def randomize_dominoes():
+    rand_dominoes = dominoes[:]
+    while not_passable(rand_dominoes):
+        rand_dominoes = random.shuffle(rand_dominoes)
+    return rand_dominoes
 
 def initialize_game(game_dict):
     ## Initialize Game
