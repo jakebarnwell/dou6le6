@@ -12,8 +12,18 @@ fb = FirebaseWrapper(firebase_url, firebase_db)
 app = Flask(__name__)
 
 @app.route('/')
-def hello():
-    return "Potato potatos"
+def app_status():
+    html_str = "<html><head><title>DB Info</title></head><body>"
+    fb_users_key = "USERS"
+    fb_get_response = fb.get_data(fb_users_key)
+    html_str += "<h1>Users</h1>"
+    html_str += str(fb_get_response)
+    html_str += "<br> <br>"
+    html_str += "<h1>Games</h1>"
+    fb_get_response = fb.get_data("PUBLIC_GAMES")    
+    html_str += str(fb_get_response)
+    html_str += "</body></html>"
+    return html_str
 
 @app.route('/game/join/<int:game_id>/<int:user_id>')
 def join(game_id, user_id):
@@ -21,7 +31,11 @@ def join(game_id, user_id):
     fb_get_response = fb.get_data(fb_game_key)
     python_game = Utils.extract_game(fb_get_response)
 
-    game = Utils.join_game(python_game, user_id)
+    game = Utils.join_game(python_game, user_id)    
+    
+    if len(game['players_list']) == 4:
+        game['has_started'] = True
+	game = Utils.initialize_game(game)
     
     fb_post_game = Utils.encode_game(game)
     fb_post_response = fb.write_data(fb_game_key, fb_post_game)
