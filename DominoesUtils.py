@@ -40,7 +40,7 @@ def encode_game(game_dict):
 
 def not_passable(rand_dominoes):
     if rand_dominoes == dominoes:
-        return False
+        return True
     
     for i in range(4):
         player_hand = rand_dominoes[7*i:7*(i+1)]
@@ -48,13 +48,15 @@ def not_passable(rand_dominoes):
         for domino in player_hand:
             count_doubles += (domino[0] == domino[1]) # 1 if double, 0 if not
         if count_doubles >= 5:
-            return False
-    return True
+            return True
+    return False
 
 def randomize_dominoes():
     rand_dominoes = dominoes[:]
-    while not_passable(rand_dominoes):
-        rand_dominoes = random.shuffle(rand_dominoes)
+    count = 0
+    while not_passable(rand_dominoes) or count < 10:
+        random.shuffle(rand_dominoes)
+        count += 1
     return rand_dominoes
 
 def join_game(game_dict, user_id):
@@ -67,7 +69,7 @@ def initialize_game(game_dict):
     rand_dominoes = randomize_dominoes()
     players_hands = []
     for i in range(4):
-        player_hands.append(rand_dominoes[7*i:7*i+7])
+        players_hands.append(rand_dominoes[7*i:7*i+7])
     ## Initialize Game
     game_dict['players_dominoes'] = players_hands
     return game_dict
