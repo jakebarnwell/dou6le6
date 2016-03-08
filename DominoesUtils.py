@@ -43,12 +43,13 @@ def not_passable(rand_dominoes):
         return False
     
     for i in range(4):
-        player = rand_dominoes[7*i:7*(i+1)]
+        player_hand = rand_dominoes[7*i:7*(i+1)]
         count_doubles = 0
-        for double in player:
-            
-    
-    
+        for domino in player_hand:
+            count_doubles += (domino[0] == domino[1]) # 1 if double, 0 if not
+        if count_doubles >= 5:
+            return False
+    return True
 
 def randomize_dominoes():
     rand_dominoes = dominoes[:]
@@ -57,5 +58,9 @@ def randomize_dominoes():
     return rand_dominoes
 
 def initialize_game(game_dict):
+    rand_dominoes = randomize_dominoes()
+    players_hands = 
+    for i in range(4):
+        player_hands.append(rand_dominoes[7*i:7*i+7])
     ## Initialize Game
     return game_dict
