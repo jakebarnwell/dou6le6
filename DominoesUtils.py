@@ -2,15 +2,15 @@ import random
 
 dominoes = []
 for i in range(7):
-        for j in range(i+1):
-            dominoes.append([j, i])
+    for j in range(i+1):
+        dominoes.append([j, i])
 
 def extract_game(game_data):
     game_dict = {
         'name'                : game_data[0],
         'is_private'          : game_data[1],
         'has_started'         : game_data[2],
-        'players_list'        : game_data[3]
+        'players_list'        : game_data[3],
         'players_dominoes'    : game_data[4],
         'current_player'      : game_data[5],
         'last_move_timestamp' : game_data[6],
@@ -57,6 +57,12 @@ def randomize_dominoes():
         rand_dominoes = random.shuffle(rand_dominoes)
     return rand_dominoes
 
+def join_game(game_dict, user_id):
+    players = game_dict['players_list'] 
+    players.append(user_id)
+    game_dict['players_list'] = players
+    return game_dict
+
 def initialize_game(game_dict):
     rand_dominoes = randomize_dominoes()
     players_hands = []
@@ -67,5 +73,6 @@ def initialize_game(game_dict):
 
 
 def play_domino(game, user_id, direction, domino):
-    if domino == "PASS":
+    pass
+    #if domino == "PASS":
         

@@ -11,6 +11,10 @@ fb = FirebaseWrapper(firebase_url, firebase_db)
 
 app = Flask(__name__)
 
+@app.route('/')
+def hello():
+    return "Potato potato"
+
 @app.route('/game/join/<int:game_id>/<int:user_id>')
 def join(game_id, user_id):
     fb_game_key = 'game_' + str(game_id)
