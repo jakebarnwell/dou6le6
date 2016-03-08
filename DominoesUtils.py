@@ -73,6 +73,33 @@ def initialize_game(game_dict):
 
 
 def play_domino(game, user_id, direction, domino):
-    pass
-    #if domino == "PASS":
-        
+
+    if domino == "PASS":
+	pass
+    else:
+        if direction == “L”:
+            if len(game[“left_dominos”]) >0:
+                l_domino_num = str(game[“left_dominos”][-1][-1])
+            else:
+                l_domino_num = str(game[“starting_domino”][-1])
+
+            if domino[0] == l_domino_num:
+                game[“left_dominos”].append([int(domino[0]), int(domino[1])])
+            else:
+                game[“left_dominos”].append([int(domino[1]), int(domino[0])])
+
+        elif direction == “R”:
+            if len(game[“right_dominos”]) >0:
+                r_domino_num = str(game[“right_dominos”][-1][-1])
+            else:
+                r_domino_num = str(game[“starting_domino”][-1])
+
+            if domino[0] == r_domino_num:
+                game[“right_dominos”].append([int(domino[0]), int(domino[1])])
+            else:
+                game[“right_dominos”].append([int(domino[1]), int(domino[0])])
+
+    game[“current_player”] = (game[“current_player”] + 1) % 4 +1
+
+    return game
+            
