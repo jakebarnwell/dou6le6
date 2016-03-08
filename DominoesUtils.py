@@ -64,3 +64,7 @@ def initialize_game(game_dict):
         player_hands.append(rand_dominoes[7*i:7*i+7])
     ## Initialize Game
     return game_dict
+
+
+def play_domino((game, user_id, direction, domino):
+    
