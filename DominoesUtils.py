@@ -66,5 +66,6 @@ def initialize_game(game_dict):
     return game_dict
 
 
-def play_domino((game, user_id, direction, domino):
-    
+def play_domino(game, user_id, direction, domino):
+    if domino == "PASS":
+        
